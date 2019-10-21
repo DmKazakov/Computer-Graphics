@@ -9,7 +9,7 @@ class Fractal : ChangeListener {
 
     init {
         slidersFrame.setListener(this)
-        slidersFrame.show()
+        slidersFrame.isVisible = true
     }
 
     override fun stateChanged(p0: ChangeEvent) {
