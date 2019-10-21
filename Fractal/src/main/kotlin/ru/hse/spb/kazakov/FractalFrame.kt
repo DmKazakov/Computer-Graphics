@@ -14,6 +14,8 @@ class FractalFrame : JFrame("Fractal"), GLEventListener {
     private lateinit var shader: Shader
     var iterations = 100
     var threshold = 4.0f
+    var re = 0.5f
+    var im = 0.5f
 
     init {
         val profile = GLProfile.get(GLProfile.GL2)
@@ -62,6 +64,7 @@ class FractalFrame : JFrame("Fractal"), GLEventListener {
 
     private fun resetShaderValues() {
         shader.setValue("shift", camera.shiftX, camera.shiftY)
+        shader.setValue("c", re, im)
         shader.setValue("zoom", camera.zoom)
         shader.setValue("iterations", iterations)
         shader.setValue("threshold", threshold)
@@ -70,7 +73,7 @@ class FractalFrame : JFrame("Fractal"), GLEventListener {
     override fun init(drawable: GLAutoDrawable) {
         val gl = drawable.gl.gL2
 
-        shader = Shader(gl, TEXTURE_RESOURCE, MANDELBROT_RESOURCE)
+        shader = Shader(gl, TEXTURE_RESOURCE, JULIA_RESOURCE)
         resetShaderValues()
     }
 

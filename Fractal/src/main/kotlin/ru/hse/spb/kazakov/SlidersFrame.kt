@@ -6,42 +6,51 @@ import javax.swing.event.ChangeListener
 
 
 class SlidersFrame : JFrame("Settings") {
-    val iterationSlider = JSlider(1, 100)
-    val thresholdSlider = JSlider(1, 100)
+    private val panel: JPanel
+    val iterationSlider = JSlider(1, 1000)
+    val thresholdSlider = JSlider(1, 500)
+    val reSlider = JSlider(1, 101)
+    val imSlider = JSlider(1, 101)
 
     init {
-        iterationSlider.paintLabels = true;
-        val iterationLabels = Hashtable<Int, JLabel>()
-        iterationLabels[1] = JLabel("1")
-        iterationLabels[100] = JLabel("100")
-        iterationSlider.labelTable = iterationLabels
-
-        thresholdSlider.paintLabels = true;
-        val thresholdLabels = Hashtable<Int, JLabel>()
-        thresholdLabels[1] = JLabel("0.1")
-        thresholdLabels[100] = JLabel("10")
-        thresholdSlider.labelTable = thresholdLabels
-
-        val thresholdSliderLabel = JLabel("Threshold:", JLabel.CENTER)
-        thresholdSliderLabel.alignmentX = JLabel.CENTER_ALIGNMENT
-        val iterationSliderLabel = JLabel("Iterations number:", JLabel.CENTER)
-        iterationSliderLabel.alignmentX = JLabel.CENTER_ALIGNMENT
-
-        val panel = JPanel()
+        panel = JPanel()
         panel.border = BorderFactory.createEmptyBorder(10, 10, 10, 10);
         val boxLayout = BoxLayout(panel, BoxLayout.Y_AXIS)
         panel.layout = boxLayout
-        panel.add(iterationSliderLabel)
-        panel.add(iterationSlider)
-        panel.add(thresholdSliderLabel)
-        panel.add(thresholdSlider)
+
+        setUpSlider(iterationSlider, "1", "1000", "Iterations number")
+        setUpSlider(thresholdSlider, "0.1", "50", "Threshold")
+        setUpSlider(reSlider, "0", "1", "Re")
+        setUpSlider(imSlider, "0", "1", "Im")
 
         add(panel)
-        setSize(300, 150)
+        setSize(300, 240)
+    }
+
+    private fun setUpSlider(slider: JSlider, minLabel: String, maxLabel: String, sliderLabel: String) {
+        slider.paintLabels = true
+        val sliderLabels = Hashtable<Int, JLabel>()
+        sliderLabels[slider.minimum] = JLabel(minLabel)
+        sliderLabels[slider.maximum] = JLabel(maxLabel)
+        slider.labelTable = sliderLabels
+
+        val sliderJLabel = JLabel("$sliderLabel:", JLabel.CENTER)
+        sliderJLabel.alignmentX = JLabel.CENTER_ALIGNMENT
+        panel.add(sliderJLabel)
+        panel.add(slider)
     }
 
     fun setListener(listener: ChangeListener) {
         iterationSlider.addChangeListener(listener)
         thresholdSlider.addChangeListener(listener)
+        reSlider.addChangeListener(listener)
+        imSlider.addChangeListener(listener)
+    }
+
+    fun setDefaultValues() {
+        iterationSlider.value = 100
+        thresholdSlider.value = 30
+        reSlider.value = 101
+        imSlider.value = 50
     }
 }

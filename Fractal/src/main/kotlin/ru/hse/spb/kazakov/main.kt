@@ -1,7 +1,7 @@
 package ru.hse.spb.kazakov
 
 const val TEXTURE_RESOURCE = "ppl.ppm"
-const val MANDELBROT_RESOURCE = "mandelbrot.glsl"
+const val JULIA_RESOURCE = "julia.glsl"
 
 fun main() {
     Fractal()
