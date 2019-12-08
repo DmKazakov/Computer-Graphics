@@ -1,3 +1,5 @@
+# Установка зависимостей
+    $ install install_dependencies.sh
 # Сборка
     $ gradle build
 # Запуск
