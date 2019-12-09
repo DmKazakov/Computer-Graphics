@@ -116,7 +116,7 @@ class Frame(modelFilePath: String) : JFrame("3D"), GLEventListener {
 
         val texture = this::class.java.classLoader.getResourceAsStream(sourceFile)
         val image = ImageIO.read(texture)
-        gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGB, image.width, image.height, 0, GL.GL_LUMINANCE, GL.GL_UNSIGNED_BYTE, image.toBuffer())
+        gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGB, image.width, image.height, 0, GL.GL_RGB, GL.GL_UNSIGNED_BYTE, image.toBuffer())
         gl.glGenerateMipmap(GL.GL_TEXTURE_2D)
         gl.glEnable(GL.GL_TEXTURE_2D)
     }

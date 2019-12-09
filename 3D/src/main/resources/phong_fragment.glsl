@@ -14,7 +14,7 @@ void main (void) {
 
     vec3 dissolve = texture(dissolve_texture, tex_coord).rgb;
     if (dissolve[0] + dissolve[1] + dissolve[2] < dissolve_threshold) discard;
-    if (dissolve[0] + dissolve[1] + dissolve[2] < dissolve_threshold + 0.01)  gl_FragColor = vec4(1, 0, 0, 0);
+    if (dissolve[0] + dissolve[1] + dissolve[2] < dissolve_threshold + 0.1)  gl_FragColor = vec4(1, 0, 0, 0);
 
     //gl_FragColor = texture2D(dissolve_texture, tex_coord);
 }
